@@ -1,9 +1,13 @@
 package com.ramielrowe.TestGame;
 
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.SlickException;
 
 public class Player{
+	public static final Color COLOR = Color.cyan;
 	
 	public static final int HEIGHT = 50;
 	public static final int WIDTH = 50;
@@ -48,6 +52,13 @@ public class Player{
 		}
 		
 	}
+	
+	public void render(GameContainer container, Graphics g)
+            throws SlickException {
+    	
+        g.setColor(Player.COLOR);
+        g.drawRect(this.getXPos(), this.getYPos(), Player.WIDTH, Player.HEIGHT);
+    }
 
 	public float getXPos() {
 		return xPos;

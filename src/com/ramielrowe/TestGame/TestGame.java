@@ -12,6 +12,8 @@ public class TestGame extends BasicGame{
 	
 	public static final int EXIT_KEY = Input.KEY_ESCAPE;
 	
+	public static final Color DEFAULT_COLOR = Color.white;
+	
 	Player p1 = new Player();
 	
     public TestGame() {
@@ -37,8 +39,8 @@ public class TestGame extends BasicGame{
     public void render(GameContainer container, Graphics g)
             throws SlickException {
     	
-        g.setColor(Color.cyan);
-        g.drawRect(p1.getXPos(), p1.getYPos(), Player.WIDTH, Player.HEIGHT);
+        p1.render(container, g);
+        g.setColor(TestGame.DEFAULT_COLOR);
     }
 
     public static void main(String[] args) {
