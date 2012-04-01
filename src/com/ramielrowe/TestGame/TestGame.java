@@ -14,7 +14,7 @@ public class TestGame extends BasicGame{
 	
 	public static final Color DEFAULT_COLOR = Color.white;
 	
-	Player p1 = new Player();
+	Player p1;
 	
     public TestGame() {
         super("TestGame");
@@ -22,7 +22,7 @@ public class TestGame extends BasicGame{
     
     @Override
     public void init(GameContainer container) throws SlickException {
-    	
+    	p1 = new Player((container.getWidth()-Player.WIDTH)/2, (container.getHeight()-Player.HEIGHT)/2);
     }
 
     @Override
