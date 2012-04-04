@@ -83,11 +83,9 @@ public class ResourceManager {
 	}
 
 	public void startLoad(){
-		BackgroundSoundLoader bsl = new BackgroundSoundLoader(soundResourceMap, soundMap);
-		BackgroundMusicLoader bml = new BackgroundMusicLoader(musicResourceMap, musicMap, bsl);
+		BackgroundSoundLoader bml = new BackgroundSoundLoader(musicResourceMap, musicMap, soundResourceMap, soundMap);
 		bml.start();
 		loaders.add(bml);
-		loaders.add(bsl);
 	}
 
 	public HashMap<String, Resource> getMusicResourceMap() {

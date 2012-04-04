@@ -38,7 +38,6 @@ public class TestStateGame extends StateBasedGame{
             app.setTargetFrameRate(60);
             app.start();
 		} catch (SlickException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
