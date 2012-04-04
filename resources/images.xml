@@ -1,0 +1,18 @@
+<resources>
+	<resource>
+		<key>image1</key>
+		<location>images/image1.png</location>
+	</resource>
+	<resource>
+		<key>image2</key>
+		<location>images/image2.png</location>
+	</resource>
+	<resource>
+		<key>image3</key>
+		<location>images/image3.png</location>
+	</resource>
+	<resource>
+		<key>image4</key>
+		<location>images/image4.png</location>
+	</resource>
+</resources>
