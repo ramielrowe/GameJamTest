@@ -3,6 +3,7 @@ package com.ramielrowe.TestGame;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -10,6 +11,8 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 public class LoadState implements GameState {
 
@@ -200,7 +203,9 @@ public class LoadState implements GameState {
 			this.resourceManager.loadImage(entry.getKey(), new Image(entry.getValue().getLocation()));
 		}
 		if(this.resourceManager.getProgress() == 100)
-			game.enterState(TestStateGame.PLAY_STATE_ID, null, null);
+			game.enterState(TestStateGame.PLAY_STATE_ID, 
+					new FadeOutTransition(Color.black, 1000), 
+					new FadeInTransition(Color.black, 1000));
 
 	}
 

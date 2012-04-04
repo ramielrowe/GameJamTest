@@ -6,8 +6,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class TestStateGame extends StateBasedGame{
-
-	//private final String[] memsave = new String[1024*50*1000];
 	
 	public static final int LOAD_STATE_ID = 1;
 	public static final int PLAY_STATE_ID = 2;
@@ -16,6 +14,11 @@ public class TestStateGame extends StateBasedGame{
 	
 	public TestStateGame(String name) {
 		super(name);
+	}
+	
+	@Override
+	public boolean closeRequested(){
+		return true;
 	}
 
 	@Override
