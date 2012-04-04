@@ -2,6 +2,7 @@ package com.ramielrowe.TestGame;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.SlickException;
@@ -17,12 +18,23 @@ public class Player{
 
 	public static final float BOOST_SCALER = 2.5f;
 
+	private ResourceManager rm;
+	
 	private float xPos = 0;
 	private float yPos = 0;
+	private Image image;
 	
-	public Player(int xPos, int yPos){
+	public Player(ResourceManager rm, int xPos, int yPos){
+		this.rm = rm;
 		this.xPos = xPos;
 		this.yPos = yPos;
+	}
+	
+	public Image getImage(){
+		if(image == null){
+			image = rm.getImage("player1");
+		}
+		return image;
 	}
 
 	public void update(GameContainer container, int delta){
@@ -42,15 +54,15 @@ public class Player{
 		if(container.getInput().isKeyDown(Input.KEY_D))
 			this.setXPos(getXPos() + Player.DELTA_Y*delta*boost);
 
-		if(this.getXPos() > container.getWidth()-Player.WIDTH-1){
-			this.setXPos(container.getWidth()-Player.WIDTH-1);
+		if(this.getXPos() > container.getWidth()-Player.WIDTH){
+			this.setXPos(container.getWidth()-Player.WIDTH);
 		}
 		else if(this.getXPos() < 0){
 			this.setXPos(0);
 		}
 
-		if(this.getYPos() > container.getHeight()-Player.HEIGHT-1){
-			this.setYPos(container.getHeight()-Player.HEIGHT-1);
+		if(this.getYPos() > container.getHeight()-Player.HEIGHT){
+			this.setYPos(container.getHeight()-Player.HEIGHT);
 		}
 		else if(this.getYPos() < 0){
 			this.setYPos(0);
@@ -62,7 +74,8 @@ public class Player{
 			throws SlickException {
 
 		g.setColor(Player.COLOR);
-		g.drawRect(this.getXPos(), this.getYPos(), Player.WIDTH, Player.HEIGHT);
+		g.drawImage(this.getImage(), this.getXPos(), this.getYPos());
+		//g.drawRect(this.getXPos(), this.getYPos(), Player.WIDTH, Player.HEIGHT);
 		
 	}
 

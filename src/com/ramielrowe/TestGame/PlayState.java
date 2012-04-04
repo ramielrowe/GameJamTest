@@ -12,7 +12,7 @@ public class PlayState implements GameState{
 
 	private ResourceManager resourceManager;
 	
-	Player p = new Player(250,250);
+	Player p;
 	
 	public PlayState(ResourceManager resourceManager){
 		this.resourceManager = resourceManager;
@@ -152,11 +152,8 @@ public class PlayState implements GameState{
 	@Override
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		Music m = this.resourceManager.getMusic("Toccata_et_Fugue");
-		if(m != null)
-			m.play();
-		else
-			System.out.println("why is this null?");
+		Music m = this.resourceManager.getMusic("eva_2.0_destiny");
+		m.play();
 		
 	}
 
@@ -169,7 +166,7 @@ public class PlayState implements GameState{
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		// TODO Auto-generated method stub
+		p = new Player(this.resourceManager, 250, 250);
 		
 	}
 

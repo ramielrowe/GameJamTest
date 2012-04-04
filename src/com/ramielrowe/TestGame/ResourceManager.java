@@ -34,6 +34,8 @@ public class ResourceManager {
 	}
 	
 	public Music getMusic(String key){
+		if(!musicMap.containsKey(key))
+			throw new RuntimeException("No such music "+key);
 		return musicMap.get(key);
 	}
 	
@@ -42,6 +44,8 @@ public class ResourceManager {
 	}
 	
 	public Image getImage(String key){
+		if(!imageMap.containsKey(key))
+			throw new RuntimeException("No such image "+key);
 		return imageMap.get(key);
 	}
 	

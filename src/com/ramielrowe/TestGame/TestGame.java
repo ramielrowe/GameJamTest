@@ -41,7 +41,7 @@ public class TestGame extends BasicGame{
     public void init(GameContainer container) throws SlickException {
     	container.getGraphics().drawString("Loading...", 200, 200);
     	container.setMusicVolume(Float.parseFloat(config.getProperty(MUSIC_VOLUME_CONFIG_KEY)));
-    	p1 = new Player((container.getWidth()-Player.WIDTH)/2, (container.getHeight()-Player.HEIGHT)/2);
+    	//p1 = new Player((container.getWidth()-Player.WIDTH)/2, (container.getHeight()-Player.HEIGHT)/2);
     	m = new Music("music/Toccata_et_Fugue_BWV565.ogg", true);
     	m.play();
     }
