@@ -193,6 +193,8 @@ public class PlayState implements GameState{
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
+		if(container.getInput().isKeyDown(Input.KEY_ESCAPE))
+			container.exit();
 		p.update(container, delta);
 		
 	}

@@ -54,7 +54,7 @@ public class Player{
 		if(container.getInput().isKeyDown(Input.KEY_SPACE)){
 			if(!this.boosting){
 				System.out.println("test");
-				this.getBoostSound().play();
+				this.getBoostSound().loop();
 				System.out.println(this.getBoostSound().playing());
 			}
 			boost = Player.BOOST_SCALER;

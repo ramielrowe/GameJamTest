@@ -193,6 +193,8 @@ public class LoadState implements GameState {
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
+		if(container.getInput().isKeyDown(Input.KEY_ESCAPE))
+			container.exit();
 		if(imageResources.hasNext()){
 			Entry<String, Resource> entry = imageResources.next();
 			this.resourceManager.loadImage(entry.getKey(), new Image(entry.getValue().getLocation()));
