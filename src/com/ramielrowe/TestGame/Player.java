@@ -6,6 +6,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 
 public class Player{
 	public static final Color COLOR = Color.cyan;
@@ -23,6 +24,8 @@ public class Player{
 	private float xPos = 0;
 	private float yPos = 0;
 	private Image image;
+	private Sound boostSound;
+	private boolean boosting = false;
 	
 	public Player(ResourceManager rm, int xPos, int yPos){
 		this.rm = rm;
@@ -36,13 +39,31 @@ public class Player{
 		}
 		return image;
 	}
+	
+	public Sound getBoostSound(){
+		if(boostSound == null){
+			boostSound = rm.getSound("player_boost");
+		}
+		return boostSound;
+	}
 
 	public void update(GameContainer container, int delta){
 
 		float boost = 1f;
 
-		if(container.getInput().isKeyDown(Input.KEY_SPACE))
+		if(container.getInput().isKeyDown(Input.KEY_SPACE)){
+			if(!this.boosting){
+				System.out.println("test");
+				this.getBoostSound().play();
+				System.out.println(this.getBoostSound().playing());
+			}
 			boost = Player.BOOST_SCALER;
+			this.boosting = true;
+		}else{
+			if(this.getBoostSound().playing())
+				this.getBoostSound().stop();
+			this.boosting = false;
+		}
 
 		if(container.getInput().isKeyDown(Input.KEY_W))
 			this.setYPos(getYPos() - Player.DELTA_Y*delta*boost);

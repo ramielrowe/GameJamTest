@@ -7,6 +7,8 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class TestStateGame extends StateBasedGame{
 
+	//private final String[] memsave = new String[1024*50*1000];
+	
 	public static final int LOAD_STATE_ID = 1;
 	public static final int PLAY_STATE_ID = 2;
 	
@@ -18,7 +20,7 @@ public class TestStateGame extends StateBasedGame{
 
 	@Override
 	public void initStatesList(GameContainer container) throws SlickException {
-		this.resourceManager = new ResourceManager("music.xml", "images.xml");
+		this.resourceManager = new ResourceManager("music.xml", "images.xml", "sounds.xml");
 		
 		this.addState(new LoadState(this.resourceManager));
 		this.addState(new PlayState(this.resourceManager));

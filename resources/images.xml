@@ -14,7 +14,7 @@
 	<resource>
 		<key>image4</key>
 		<location>images/image4.png</location>
-	</resource>
+	</resource><!-- -->
 	<resource>
 		<key>player1</key>
 		<location>images/player1.png</location>
