@@ -1,9 +1,11 @@
 package com.ramielrowe.TestGame;
 
+import javax.xml.bind.annotation.XmlAttribute;
+
 public class Resource {
 
-	private String key;
-	private String location;
+	protected String key;
+	protected String location;
 	
 	public Resource(){
 		
@@ -14,6 +16,7 @@ public class Resource {
 		this.location = location;
 	}
 	
+	@XmlAttribute
 	public String getLocation() {
 		return location;
 	}
@@ -21,6 +24,7 @@ public class Resource {
 		this.location = location;
 	}
 	
+	@XmlAttribute
 	public String getKey() {
 		return key;
 	}
