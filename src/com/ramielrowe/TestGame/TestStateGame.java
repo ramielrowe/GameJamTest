@@ -23,7 +23,7 @@ public class TestStateGame extends StateBasedGame{
 
 	@Override
 	public void initStatesList(GameContainer container) throws SlickException {
-		this.resourceManager = new ResourceManager("music.xml", "images.xml", "sounds.xml");
+		this.resourceManager = new ResourceManager("music.xml", "images.xml", "sounds.xml", "maps.xml", "");
 		
 		this.addState(new LoadState(this.resourceManager));
 		this.addState(new PlayState(this.resourceManager));

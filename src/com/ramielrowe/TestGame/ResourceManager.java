@@ -8,7 +8,10 @@ import javax.xml.bind.JAXB;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Music;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
+import org.newdawn.slick.tiled.TiledMap;
+import org.newdawn.slick.util.Log;
 import org.newdawn.slick.util.ResourceLoader;
 
 public class ResourceManager {
@@ -19,15 +22,21 @@ public class ResourceManager {
 	private HashMap<String, Image> imageMap;
 	private HashMap<String, Resource> soundResourceMap;
 	private HashMap<String, Sound> soundMap;
+	private HashMap<String, Resource> mapResourceMap;
+	private HashMap<String, TiledMap> mapMap;
+	private String tileSetLocation;
 	private List<BackgroundResourceLoader> loaders = new ArrayList<BackgroundResourceLoader>(3);
 
-	public ResourceManager(String musicXML, String imageXml, String soundXml){
+	public ResourceManager(String musicXML, String imageXml, String soundXml, String mapXml, String tileSetLocation){
 		musicResourceMap = new HashMap<String, Resource>();
 		musicMap = new HashMap<String, Music>();
 		imageResourceMap = new HashMap<String, Resource>();
 		imageMap = new HashMap<String, Image>();
 		soundResourceMap = new HashMap<String, Resource>();
 		soundMap = new HashMap<String, Sound>();
+		mapResourceMap = new HashMap<String, Resource>();
+		mapMap = new HashMap<String, TiledMap>();
+		this.tileSetLocation = tileSetLocation;
 		Resources musicResources = JAXB.unmarshal(ResourceLoader.getResourceAsStream(musicXML), Resources.class);
 		if(musicResources.getResource() != null){
 			for(Resource r : musicResources.getResource()){
@@ -44,6 +53,12 @@ public class ResourceManager {
 		if(soundResources.getResource() != null){
 			for(Resource r : soundResources.getResource()){
 				soundResourceMap.put(r.getKey(), r);
+			}
+		}
+		Resources mapResources = JAXB.unmarshal(ResourceLoader.getResourceAsStream(mapXml), Resources.class);
+		if(mapResources.getResource() != null){
+			for(Resource r : mapResources.getResource()){
+				mapResourceMap.put(r.getKey(), r);
 			}
 		}
 	}
@@ -68,6 +83,24 @@ public class ResourceManager {
 		if(!soundMap.containsKey(key))
 			throw new RuntimeException("No such sound "+key);
 		return soundMap.get(key);
+	}
+	
+	public void loadMap(String key){
+		Resource r = this.mapResourceMap.get(key);
+		try {
+			TiledMap tm = new TiledMap(r.getLocation(), this.tileSetLocation);
+			mapMap.put(key, tm);
+		} catch (SlickException e) {
+			Log.error("Error loading map "+key, e);
+		}
+	}
+	
+	public TiledMap getMap(String key){
+		if(!mapMap.containsKey(key))
+			loadMap(key);
+		if(!mapMap.containsKey(key))
+			throw new RuntimeException("No such map "+key);
+		return mapMap.get(key);
 	}
 
 	public int getProgress(){

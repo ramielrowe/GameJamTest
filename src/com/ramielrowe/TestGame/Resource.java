@@ -4,8 +4,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 
 public class Resource {
 
-	protected String key;
-	protected String location;
+	private String key;
+	private String location;
 	
 	public Resource(){
 		

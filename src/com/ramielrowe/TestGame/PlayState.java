@@ -7,6 +7,7 @@ import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.tiled.TiledMap;
 
 public class PlayState implements GameState{
 
@@ -180,6 +181,8 @@ public class PlayState implements GameState{
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
+		TiledMap m = this.resourceManager.getMap("untitled");
+		m.render(20, 20, -(int)Math.ceil(20f/m.getTileWidth()), -(int)Math.ceil(20f/m.getTileHeight()), 100, 100);
 		g.drawImage(resourceManager.getImage("image1"), 100, 100);
 		g.drawImage(resourceManager.getImage("image2"), 200, 200);
 		g.drawImage(resourceManager.getImage("image3"), 300, 300);
